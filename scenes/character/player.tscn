@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2q5p0paxn3kh"]
+
+[ext_resource type="Texture2D" uid="uid://c2a1wu8t8b01v" path="res://res/graphics/static/bat.png" id="1_dtgvk"]
+[ext_resource type="Script" path="res://code/player/player.gd" id="1_gtqkv"]
+[ext_resource type="Script" path="res://code/player/PathPlayer2D.gd" id="1_xkpol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq31o"]
+size = Vector2(36, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwbtw"]
+size = Vector2(8, 8)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_xkpol")
+
+[node name="PlayerBody" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_gtqkv")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBody"]
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(2, 2)
+texture = ExtResource("1_dtgvk")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PlayerBody"]
+shape = SubResource("RectangleShape2D_yq31o")
+
+[node name="RotorTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="PathArea" type="Area2D" parent="."]
+
+[node name="PathIntersectBox" type="CollisionShape2D" parent="PathArea"]
+shape = SubResource("RectangleShape2D_nwbtw")
+
+[connection signal="area_entered" from="PathArea" to="." method="_on_area_2d_area_entered"]

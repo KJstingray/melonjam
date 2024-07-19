@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://lsq551mt110l"]
+
+[ext_resource type="PackedScene" uid="uid://b2q5p0paxn3kh" path="res://scenes/character/player.tscn" id="1_pbcdt"]
+[ext_resource type="Script" path="res://code/test_scene/testScrene.gd" id="1_ytaop"]
+[ext_resource type="Script" path="res://code/line/Line2D.gd" id="3_x4ia2"]
+
+[node name="TestScrene" type="Node2D"]
+script = ExtResource("1_ytaop")
+
+[node name="Player" parent="." instance=ExtResource("1_pbcdt")]
+position = Vector2(417, 228)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="Line2D" type="Line2D" parent="."]
+script = ExtResource("3_x4ia2")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
