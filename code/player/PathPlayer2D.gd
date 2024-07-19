@@ -9,7 +9,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = body.position
+	#global_position = body.global_position
+	#pathArea.global_position = position
 	pass
 
 

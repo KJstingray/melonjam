@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://lsq551mt110l"]
+[gd_scene load_steps=6 format=3 uid="uid://lsq551mt110l"]
 
 [ext_resource type="PackedScene" uid="uid://b2q5p0paxn3kh" path="res://scenes/character/player.tscn" id="1_pbcdt"]
 [ext_resource type="Script" path="res://code/test_scene/testScrene.gd" id="1_ytaop"]
 [ext_resource type="Script" path="res://code/line/Line2D.gd" id="3_x4ia2"]
+[ext_resource type="Script" path="res://code/line/lineCollisions.gd" id="4_6ns83"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bs55v"]
+height = 294.0
 
 [node name="TestScrene" type="Node2D"]
 script = ExtResource("1_ytaop")
@@ -15,8 +19,21 @@ wait_time = 0.05
 autostart = true
 
 [node name="Line2D" type="Line2D" parent="."]
+default_color = Color(1, 1, 1, 0)
 script = ExtResource("3_x4ia2")
 
-[node name="Area2D" type="Area2D" parent="Line2D"]
+[node name="lineCollisions" type="Area2D" parent="Line2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("4_6ns83")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(575, 236)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_bs55v")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Line2D/lineCollisions" to="." method="_on_line_collisions_area_entered"]
+[connection signal="body_entered" from="Line2D/lineCollisions" to="." method="_on_line_collisions_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

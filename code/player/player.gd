@@ -26,7 +26,9 @@ func _physics_process(delta):
 		# rotor += delta
 	velocity = SPEED*Vector2(vectorX,vectorY)
 	#print(velocity)
+	velocity.limit_length(1)
 	move_and_slide()
+	#print($PathArea.get_overlapping_areas())
 	
 
 

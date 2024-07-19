@@ -20,3 +20,15 @@ func _process(delta):
 
 func _on_timer_timeout():
 	pass
+
+
+func _on_area_2d_area_entered(area):
+	print('playerenters')
+
+
+func _on_line_collisions_area_entered(area):
+	print('playerenters2')
+
+
+func _on_line_collisions_body_entered(body):
+	print('playerenters3')
