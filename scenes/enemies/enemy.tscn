@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgkkg6ehg04wy"]
+
+[ext_resource type="Script" path="res://code/enemy1/enemy.gd" id="1_luejc"]
+[ext_resource type="Script" path="res://code/enemy1/Area2D.gd" id="2_ald6g"]
+[ext_resource type="PackedScene" uid="uid://q0e0u4eqvofi" path="res://scenes/effects/bloodstream.tscn" id="3_ju5bc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0s6e"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_luejc")
+speed = 50
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_box"]]
+z_index = 8
+script = ExtResource("2_ald6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s0s6e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0.0313726, 0, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="RayCast" type="RayCast2D" parent="."]
+target_position = Vector2(56, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = -10.0
+
+[node name="Bloodstream" parent="." instance=ExtResource("3_ju5bc")]
+
+[connection signal="hurt_self" from="Area2D" to="." method="_on_area_2d_hurt_self"]

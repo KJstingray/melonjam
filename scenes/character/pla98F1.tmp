@@ -10,7 +10,6 @@ size = Vector2(36, 14)
 size = Vector2(8, 8)
 
 [node name="PlayerBody" type="CharacterBody2D"]
-z_index = 10
 collision_layer = 5
 collision_mask = 5
 motion_mode = 1
@@ -25,8 +24,8 @@ texture = ExtResource("1_dtgvk")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yq31o")
 
-[node name="SigilTimer" type="Timer" parent="."]
-one_shot = true
+[node name="RotorTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="PathArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -35,6 +34,5 @@ collision_mask = 4
 [node name="PathIntersectBox" type="CollisionShape2D" parent="PathArea"]
 shape = SubResource("RectangleShape2D_nwbtw")
 
-[connection signal="timeout" from="SigilTimer" to="." method="_on_sigil_timer_timeout"]
 [connection signal="area_entered" from="PathArea" to="." method="_on_path_area_area_entered"]
 [connection signal="area_shape_entered" from="PathArea" to="." method="_on_path_area_area_shape_entered"]

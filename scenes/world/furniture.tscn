@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://clfsyak6erapi"]
+
+[ext_resource type="Script" path="res://code/furniture/furniture.gd" id="1_gpw3i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p6ifc"]
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ack07"]
+
+[node name="Furniture" type="RigidBody2D"]
+collision_layer = 9
+collision_mask = 9
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_p6ifc")
+gravity_scale = 0.0
+constant_force = Vector2(-1, 0)
+script = ExtResource("1_gpw3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, 10, 10, 10, 10, -10, -10, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ack07")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
