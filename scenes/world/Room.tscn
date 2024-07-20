@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://q5xukbvoqe8u"]
+
+[ext_resource type="Script" path="res://code/room/Room.gd" id="1_bm8ww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifyhj"]
+size = Vector2(272, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxmwc"]
+size = Vector2(64, 217.25)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_bm8ww")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(0, 0, 0, 216, 64, 216, 64, 64, 440, 64, 440, 0)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(1152, 648)
+rotation = -3.14159
+polygon = PackedVector2Array(0, 0, 0, 216, 64, 216, 64, 64, 440, 64, 440, 0)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(440, 648)
+rotation = -3.14159
+polygon = PackedVector2Array(0, 0, 0, 64, 376, 64.0001, 376, 216, 440, 216, 440, 0)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(712, 0)
+polygon = PackedVector2Array(0, 0, 0, 64, 376, 64, 376, 216, 440, 216, 440, 0)
+
+[node name="Doors" type="StaticBody2D" parent="."]
+
+[node name="DoorUp" type="CollisionShape2D" parent="Doors"]
+position = Vector2(576, 32)
+shape = SubResource("RectangleShape2D_ifyhj")
+disabled = true
+
+[node name="DoorRight" type="CollisionShape2D" parent="Doors"]
+position = Vector2(1120, 324.25)
+shape = SubResource("RectangleShape2D_uxmwc")
+disabled = true
+
+[node name="DoorDown" type="CollisionShape2D" parent="Doors"]
+position = Vector2(576, 616)
+shape = SubResource("RectangleShape2D_ifyhj")
+disabled = true
+
+[node name="DoorLeft" type="CollisionShape2D" parent="Doors"]
+position = Vector2(32, 323.375)
+shape = SubResource("RectangleShape2D_uxmwc")
+disabled = true

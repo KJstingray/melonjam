@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://q0e0u4eqvofi"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjle3"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Bloodstream" type="GPUParticles2D"]
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_pjle3")
+one_shot = true
+explosiveness = 0.25
+trail_lifetime = 1.75

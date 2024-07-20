@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckmvq5mupbsv7"]
+
+[ext_resource type="Script" path="res://code/sanguineSigil/SanguineSigil.gd" id="1_8okp0"]
+[ext_resource type="Script" path="res://code/sanguineSigil/Area2D.gd" id="2_ocltf"]
+
+[node name="SanguineSigil" type="Node2D"]
+script = ExtResource("1_8okp0")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_ocltf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
