@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxqdeprb36a5w"]
+
+[ext_resource type="Texture2D" uid="uid://i3dlycqgdjxy" path="res://res/graphics/textures/RF_Catacombs_v1.0/mainlevbuild2.png" id="1_3f1ff"]
+
+[node name="WSide2" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(513, 323)
+scale = Vector2(2, 2)
+texture = ExtResource("1_3f1ff")
+region_enabled = true
+region_rect = Rect2(64, 80, 32, 16)

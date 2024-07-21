@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2q5p0paxn3kh"]
+[gd_scene load_steps=6 format=3 uid="uid://b2q5p0paxn3kh"]
 
-[ext_resource type="Texture2D" uid="uid://c2a1wu8t8b01v" path="res://res/graphics/static/bat.png" id="1_dtgvk"]
 [ext_resource type="Script" path="res://code/player/player.gd" id="1_gtqkv"]
+[ext_resource type="Texture2D" uid="uid://sqtfchgccbn4" path="res://res/graphics/static/vampire_sprite2.png" id="2_hku47"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq31o"]
-size = Vector2(36, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dee5g"]
+size = Vector2(26.6667, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwbtw"]
-size = Vector2(8, 8)
+size = Vector2(16.6667, 19.3333)
 
-[node name="PlayerBody" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yh2rb"]
+radius = 242.909
+
+[node name="PlayerBody" type="CharacterBody2D" groups=["player"]]
 z_index = 10
+scale = Vector2(1.5, 1.5)
 collision_layer = 5
 collision_mask = 5
 motion_mode = 1
@@ -18,12 +22,12 @@ script = ExtResource("1_gtqkv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 3)
-scale = Vector2(2, 2)
-texture = ExtResource("1_dtgvk")
+rotation = 1.5708
+texture = ExtResource("2_hku47")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yq31o")
+position = Vector2(2.54313e-06, -3.17891e-07)
+shape = SubResource("RectangleShape2D_dee5g")
 
 [node name="SigilTimer" type="Timer" parent="."]
 one_shot = true
@@ -33,7 +37,16 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="PathIntersectBox" type="CollisionShape2D" parent="PathArea"]
+position = Vector2(-1, -0.333333)
 shape = SubResource("RectangleShape2D_nwbtw")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+gravity_space_override = 1
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yh2rb")
 
 [connection signal="timeout" from="SigilTimer" to="." method="_on_sigil_timer_timeout"]
 [connection signal="area_entered" from="PathArea" to="." method="_on_path_area_area_entered"]

@@ -18,5 +18,5 @@ func _on_timer_timeout():
 
 
 func _on_area_2d_area_entered(area):
-	print(area.is_in_group('enemy_box'))
-	area.hurt(10)
+	if(area.is_in_group('enemy_box')):
+		area.hurt(10)

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Melonjam"
-run/main_scene="res://scenes/testScrene.tscn"
+run/main_scene="res://scenes/levels/Level1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_height=864
 
 [input]
 

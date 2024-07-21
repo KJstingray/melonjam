@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dterv2u480y7g"]
+
+[ext_resource type="Texture2D" uid="uid://i3dlycqgdjxy" path="res://res/graphics/textures/RF_Catacombs_v1.0/mainlevbuild2.png" id="1_ul2wo"]
+
+[node name="WGrave1" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(513, 323)
+texture = ExtResource("1_ul2wo")
+region_enabled = true
+region_rect = Rect2(176, 208, 64, 48)
