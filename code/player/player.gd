@@ -27,10 +27,10 @@ func _physics_process(delta):
 		vectorY -= delta * TURNING_SPEED if vectorY > -1 else 0
 	if Input.is_action_pressed("turn_down"):
 		vectorY += delta * TURNING_SPEED if vectorY < 1 else 0
-	velocity = SPEED*Vector2(vectorX,vectorY)
+	velocity = SPEED* Vector2(vectorX,vectorY).limit_length(1)
 	sprite.global_rotation = atan2(vectorY, vectorX) + PI/2
 
-	var collision = move_and_collide(velocity.limit_length(130)/ (50 / (1 + Store.data.i0.value * Store.items.count("i0"))) )
+	var collision = move_and_collide(velocity / (40 / (1 + Store.data.i0.value * Store.items.count("i0"))) )
 	if collision:
 		vectorX = velocity.bounce(collision.get_normal()).limit_length(1).x
 		vectorY = velocity.bounce(collision.get_normal()).limit_length(1).y

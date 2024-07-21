@@ -22,8 +22,7 @@ Store="*res://code/gameStore/store.gd"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/viewport_height=864
 window/stretch/mode="viewport"
 
 [input]

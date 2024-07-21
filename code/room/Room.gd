@@ -1,22 +1,5 @@
 extends Node2D
 
-@onready var decorations = {
-	'full':{
-		'd1': preload("res://scenes/objects/walls/walls_brick/decor/full/W_grave1.tscn"),
-		'd2': preload("res://scenes/objects/walls/walls_brick/decor/full/W_grave2.tscn"),
-		'd3': preload("res://scenes/objects/walls/walls_brick/decor/full/W_grave3.tscn"),
-		'd4': preload("res://scenes/objects/walls/walls_brick/decor/full/W_grave4.tscn"),
-		'd5': preload("res://scenes/objects/walls/walls_brick/decor/full/W_grave5.tscn"),
-	},
-	'half':{
-		'd1': preload("res://scenes/objects/walls/walls_brick/decor/half/W_window4.tscn"),
-	},
-	'quarter':{
-		'd1': preload("res://scenes/objects/walls/walls_brick/decor/quarter/W_window1.tscn"),
-		'd2': preload("res://scenes/objects/walls/walls_brick/decor/quarter/W_window2.tscn"),
-		'd3': preload("res://scenes/objects/walls/walls_brick/decor/quarter/W_window3.tscn"),
-	}
-} 
 @onready var pillar = preload("res://scenes/objects/obstacles/Pillar.tscn")
 @onready var treasurePillar = preload("res://scenes/objects/standing/treasurePillar.tscn")
 @onready var werewolf = preload("res://scenes/enemies/Werewolf.tscn")
@@ -111,23 +94,33 @@ func _on_death(body):
 			barred.get_child(n).visible = false
 			
 func decorate():
-	#OBSTACLES
-	for item in layout.obstacles:
-		var obstacle = pillar.instantiate()
-		obstacle.global_position.x = (layout.obstacles[item][0]*64) + 224
-		obstacle.global_position.y = (layout.obstacles[item][1]*64) + 208
-		decorationLayer.add_child(obstacle)
-	#TREASURE
-	for treasureItem in layout.treasure:
-		var pedestal = treasurePillar.instantiate()
-		pedestal.global_position.x = (treasureItem[0]*64) + 224
-		pedestal.global_position.y = (treasureItem[1]*64) + 208
-		decorationLayer.add_child(pedestal)
-		var newItem = itemTemplate.instantiate()
-		newItem.global_position.x = (treasureItem[0]*64) + 224
-		newItem.global_position.y = (treasureItem[1]*64) + 144
-		newItem.id = (randi()% 5)
-		itemsLayer.add_child(newItem)
+	#FLOOR MAP
+	var floorSlots =[]
+	for n in 7:
+		var row = []
+		for z in 12:
+			row.append(z)
+		floorSlots.append(row)
+	if !layout.exit:
+		#OBSTACLES
+		for item in layout.obstacles:
+			var obstacle = pillar.instantiate()
+			obstacle.global_position.x = (layout.obstacles[item][0]*64) + 224
+			obstacle.global_position.y = (layout.obstacles[item][1]*64) + 208
+			decorationLayer.add_child(obstacle)
+		#TREASURE
+		for treasureItem in layout.treasure:
+			var pedestal = treasurePillar.instantiate()
+			pedestal.global_position.x = (treasureItem[0]*64) + 224
+			pedestal.global_position.y = (treasureItem[1]*64) + 208
+			decorationLayer.add_child(pedestal)
+			var newItem = itemTemplate.instantiate()
+			newItem.global_position.x = (treasureItem[0]*64) + 224
+			newItem.global_position.y = (treasureItem[1]*64) + 128
+			newItem.id = (randi()% 5)
+			itemsLayer.add_child(newItem)
+	else:
+		
 	#WALL DECORATIONS
 	for rotation in [ false, true]:
 		for n in 5:
@@ -155,8 +148,8 @@ func decorate():
 							wallSlots += 1
 						
 func addWallDeco( wall, slot, type, rotated):
-	var index = (randi() % decorations[type].size())
-	var deco = decorations[type]['d'+str(index+1)].instantiate()
+	var index = (randi() % Store.decorations[type].size())
+	var deco = Store.decorations[type]['d'+str(index+1)].instantiate()
 	if !rotated:
 		deco.global_position.x = 128 + (wall * 192) + slot * 32
 		deco.global_position.y = 64

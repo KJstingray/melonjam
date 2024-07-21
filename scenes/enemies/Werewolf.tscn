@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://c474mtxkrawxy"]
+[gd_scene load_steps=11 format=3 uid="uid://c474mtxkrawxy"]
 
 [ext_resource type="Script" path="res://code/enemy1/enemy.gd" id="1_08n3i"]
 [ext_resource type="Texture2D" uid="uid://bgn6hxopiq5w7" path="res://res/graphics/static/shadow.png" id="3_j0sta"]
 [ext_resource type="Texture2D" uid="uid://cine52u1bmjgt" path="res://res/graphics/anims/werewolf_sprite.png" id="3_m2ql6"]
 [ext_resource type="PackedScene" uid="uid://q0e0u4eqvofi" path="res://scenes/effects/bloodstream.tscn" id="3_q62t3"]
+[ext_resource type="Shader" path="res://res/shaders/blip.gdshader" id="3_xuu4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mm1hr"]
+shader = ExtResource("3_xuu4x")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(0.721391, 0.107471, 0.148217, 1)
 
 [sub_resource type="Animation" id="Animation_rcnta"]
 resource_name = "walk"
@@ -75,6 +81,7 @@ texture = ExtResource("3_j0sta")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_mm1hr")
 texture = ExtResource("3_m2ql6")
 hframes = 5
 frame = 2

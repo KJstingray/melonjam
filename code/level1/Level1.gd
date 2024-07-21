@@ -110,9 +110,11 @@ func generate_map():
 	assign_layouts()
 
 func assign_layouts():
-	var treasureRoom = (randi() % 9)
+	var treasureRoom = (randi() % 8)
 	for roomIndex in 9:
-		if roomIndex != 0:
+		if roomIndex == 8:
+			rooms.get_children()[0].initLayout(data['e0'])
+		elif roomIndex != 0:
 			var index = (randi() % 3 + 1)
 			var layout = data['l' + str(index)]
 			rooms.get_children()[roomIndex].initLayout(layout)
