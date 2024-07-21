@@ -1,0 +1,37 @@
+{
+	"i0":{
+		"name": "speedup_placeholder",
+		"description": "description_placeholder",
+		"effect": "statBoost",
+		"variable": "speed",
+		"value": 0.2
+	},
+	"i1":{
+		"name": "lengthup_placeholder",
+		"description": "description_placeholder",
+		"effect": "statBoost",
+		"variable": "length",
+		"value": 20
+	},
+	"i2":{
+		"name": "damageup_placeholder",
+		"description": "description_placeholder",
+		"effect": "statBoost",
+		"variable": "damage",
+		"value": 5
+	},
+	"i3":{
+		"name": "hpup_placeholder",
+		"description": "description_placeholder",
+		"effect": "statBoost",
+		"variable": "health",
+		"value": 1
+	},
+	"i4":{
+		"name": "linedamage_placeholder",
+		"description": "description_placeholder",
+		"effect": "special",
+		"variable": "health",
+		"value": 1
+	}
+}

@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1oyuefiy83g1"]
+
+[ext_resource type="Script" path="res://code/darkBall/darkBall.gd" id="1_i5vil"]
+[ext_resource type="Texture2D" uid="uid://cyr8bl8rf73bi" path="res://res/graphics/anims/dark_ball_sprite2.png" id="2_y7o6c"]
+
+[sub_resource type="Animation" id="Animation_ruj27"]
+resource_name = "fly"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:speed")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 0.0915056),
+"update": 0,
+"values": [0, 450]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_je2a7"]
+_data = {
+"fly": SubResource("Animation_ruj27")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yb1i3"]
+radius = 12.0
+
+[node name="DarkBall" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_i5vil")
+speed = 300
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -1.5708
+texture = ExtResource("2_y7o6c")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_je2a7")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 1)
+shape = SubResource("CircleShape2D_yb1i3")

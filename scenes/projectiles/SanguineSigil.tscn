@@ -1,18 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckmvq5mupbsv7"]
+[gd_scene load_steps=4 format=3 uid="uid://ckmvq5mupbsv7"]
 
 [ext_resource type="Script" path="res://code/sanguineSigil/SanguineSigil.gd" id="1_8okp0"]
 [ext_resource type="Script" path="res://code/sanguineSigil/Area2D.gd" id="2_ocltf"]
+[ext_resource type="Texture2D" uid="uid://bhtyv118hj2ut" path="res://res/graphics/anims/bloodtrail1.png" id="3_s0e82"]
 
 [node name="SanguineSigil" type="Node2D"]
 script = ExtResource("1_8okp0")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3843
+collision_mask = 3843
 script = ExtResource("2_ocltf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.526793, 1.2153e-06, 3.85046e-07, 1)
+antialiased = true
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+closed = true
+width = 32.0
+texture = ExtResource("3_s0e82")
+texture_mode = 1
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -5,6 +5,8 @@
 [node name="WWindow4" type="Sprite2D"]
 texture_filter = 1
 position = Vector2(513, 323)
+scale = Vector2(2, 2)
 texture = ExtResource("1_se78m")
+offset = Vector2(16, 24)
 region_enabled = true
 region_rect = Rect2(320, 208, 32, 48)

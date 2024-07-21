@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkhbgetg5n7ip"]
+
+[ext_resource type="Script" path="res://code/level1/Level1.gd" id="1_irfiu"]
+[ext_resource type="PackedScene" uid="uid://q5xukbvoqe8u" path="res://scenes/world/Room.tscn" id="2_uia4k"]
+[ext_resource type="PackedScene" uid="uid://b2q5p0paxn3kh" path="res://scenes/character/player.tscn" id="3_fqyeu"]
+[ext_resource type="Script" path="res://code/healthBar/HealthBar.gd" id="3_iben3"]
+[ext_resource type="Texture2D" uid="uid://5ebn5qw1e85x" path="res://res/graphics/static/charPanel.png" id="4_4d8ie"]
+[ext_resource type="PackedScene" uid="uid://bonqwwebv0pnf" path="res://scenes/Trail/Trail.tscn" id="4_lqyo8"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_irfiu")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Room" parent="Rooms" instance=ExtResource("2_uia4k")]
+completed = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 432)
+
+[node name="HealthBar" type="Node2D" parent="Camera2D"]
+script = ExtResource("3_iben3")
+
+[node name="Panel" type="Sprite2D" parent="Camera2D/HealthBar"]
+texture_filter = 1
+position = Vector2(208, 80)
+texture = ExtResource("4_4d8ie")
+
+[node name="PlayerBody" parent="." instance=ExtResource("3_fqyeu")]
+position = Vector2(352, 456)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "bejkfjkdsn"
+
+[node name="Line2D" parent="." instance=ExtResource("4_lqyo8")]
+sharp_limit = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="room_entered" from="Rooms/Room" to="." method="_on_room_room_entered"]
+[connection signal="hurt_update" from="PlayerBody" to="." method="_on_player_body_hurt_update"]
+[connection signal="sigilClosed" from="PlayerBody" to="." method="_on_player_body_sigil_closed"]
+[connection signal="sigil_finished" from="Line2D" to="." method="_on_line_2d_sigil_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

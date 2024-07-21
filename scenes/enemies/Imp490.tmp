@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfcoh55k0jvu3"]
+
+[ext_resource type="Script" path="res://code/imp/Imp.gd" id="1_i3moq"]
+[ext_resource type="Script" path="res://code/enemy1/Area2D.gd" id="2_ypq60"]
+[ext_resource type="Texture2D" uid="uid://ddh4sj4us7eib" path="res://res/graphics/static/shadow2.png" id="3_vldmj"]
+[ext_resource type="Texture2D" uid="uid://b41w33aurpfye" path="res://res/graphics/anims/imp_sprite.png" id="4_didat"]
+[ext_resource type="PackedScene" uid="uid://q0e0u4eqvofi" path="res://scenes/effects/bloodstream.tscn" id="5_fs7xr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0s6e"]
+size = Vector2(40, 40)
+
+[sub_resource type="Animation" id="Animation_rcnta"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwtxk"]
+_data = {
+"walk": SubResource("Animation_rcnta")
+}
+
+[node name="Enemy" type="Node2D" groups=["enemies"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_i3moq")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_box"]]
+z_index = 8
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("2_ypq60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s0s6e")
+
+[node name="shadow" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.33333, 19.3333)
+texture = ExtResource("3_vldmj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_didat")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_iwtxk")
+}
+
+[node name="RayCast" type="RayCast2D" parent="."]
+target_position = Vector2(27.5, -1.5)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = -10.0
+
+[node name="Bloodstream" parent="." instance=ExtResource("5_fs7xr")]
+
+[connection signal="hurt_self" from="Area2D" to="." method="_on_area_2d_hurt_self"]
