@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bonqwwebv0pnf"]
+
+[ext_resource type="Script" path="res://code/line/Line2D.gd" id="1_k22br"]
+[ext_resource type="Script" path="res://code/line/lineCollisions.gd" id="2_wd7on"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_o5vet"]
+
+[node name="Line2D" type="Line2D"]
+texture_repeat = 2
+width = 32.0
+texture = SubResource("ImageTexture_o5vet")
+texture_mode = 1
+script = ExtResource("1_k22br")
+
+[node name="lineCollisions" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_wd7on")
+
+[connection signal="creation_finished" from="lineCollisions" to="." method="_on_line_collisions_creation_finished"]
