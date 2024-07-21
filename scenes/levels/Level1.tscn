@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://5ebn5qw1e85x" path="res://res/graphics/static/charPanel.png" id="4_4d8ie"]
 [ext_resource type="PackedScene" uid="uid://bonqwwebv0pnf" path="res://scenes/Trail/Trail.tscn" id="4_lqyo8"]
 [ext_resource type="Script" path="res://code/panel/Panel.gd" id="5_2462u"]
-[ext_resource type="PackedScene" uid="uid://ohrsy7huix5f" path="res://scenes/character/preview.tscn" id="5_dbjhl"]
+[ext_resource type="PackedScene" path="res://scenes/character/preview.tscn" id="5_dbjhl"]
 [ext_resource type="PackedScene" uid="uid://cw6uxy462nfhj" path="res://scenes/Items/Item.tscn" id="9_3cfwe"]
 
 [node name="Level1" type="Node2D"]
@@ -16,7 +16,6 @@ script = ExtResource("1_irfiu")
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="Room" parent="Rooms" instance=ExtResource("2_uia4k")]
-completed = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(576, 432)
@@ -62,8 +61,6 @@ position = Vector2(777, 603)
 id = 0
 
 [connection signal="room_entered" from="Rooms/Room" to="." method="_on_room_room_entered"]
-[connection signal="hp_up" from="PlayerBody" to="." method="_on_player_body_hp_up"]
-[connection signal="hurt_update" from="PlayerBody" to="." method="_on_player_body_hurt_update"]
 [connection signal="sigilClosed" from="PlayerBody" to="." method="_on_player_body_sigil_closed"]
 [connection signal="sigil_finished" from="Line2D" to="." method="_on_line_2d_sigil_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

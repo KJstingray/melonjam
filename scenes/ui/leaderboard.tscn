@@ -1,37 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfutgadkx0ma"]
+[gd_scene load_steps=4 format=3 uid="uid://dfutgadkx0ma"]
 
 [ext_resource type="Script" path="res://code/ui/leaderboard.gd" id="1_8okp7"]
+[ext_resource type="Texture2D" uid="uid://d3o5xvnq8tan7" path="res://res/graphics/static/leaderboard.png" id="2_6poyo"]
+[ext_resource type="FontFile" uid="uid://dekbp6tks6f6i" path="res://res/fonts/antiquity-print.ttf" id="3_k0mq4"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -2.0
+offset_right = -370.0
+offset_bottom = -109.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_8okp7")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -244.5
-offset_top = -215.0
-offset_right = 244.5
-offset_bottom = 215.0
+offset_left = -214.5
+offset_top = -244.0
+offset_right = 215.5
+offset_bottom = 244.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_6poyo")
+
+[node name="Loading" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_top = 191.0
+offset_right = 87.0
+offset_bottom = 225.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.655026, 0.107063, 0.182201, 1)
+theme_override_fonts/font = ExtResource("3_k0mq4")
+theme_override_font_sizes/font_size = 19
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 489.0
-offset_bottom = 430.0
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 414.0
+offset_bottom = 474.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
@@ -39,6 +61,21 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 62
+theme_override_constants/separation = 108
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_top = 6.0
+offset_right = 87.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.655026, 0.107063, 0.182201, 1)
+theme_override_fonts/font = ExtResource("3_k0mq4")
+theme_override_font_sizes/font_size = 22
+text = "Leaderboard"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
