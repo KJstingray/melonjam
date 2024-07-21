@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqar0xw7hl6x2"]
+
+[ext_resource type="Texture2D" uid="uid://lepusls8540g" path="res://res/graphics/textures/RF_Catacombs_v1.0/mainlevbuild.png" id="1_ed1ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cntc"]
+size = Vector2(30, 30)
+
+[node name="Pillar" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 3841
+collision_mask = 3841
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ed1ao")
+region_enabled = true
+region_rect = Rect2(541, 509, 38, 38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0cntc")
