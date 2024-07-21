@@ -48,6 +48,10 @@ gravity_point = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yh2rb")
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="timeout" from="SigilTimer" to="." method="_on_sigil_timer_timeout"]
 [connection signal="area_entered" from="PathArea" to="." method="_on_path_area_area_entered"]
 [connection signal="area_shape_entered" from="PathArea" to="." method="_on_path_area_area_shape_entered"]

@@ -5,6 +5,8 @@
 [node name="WGrave3" type="Sprite2D"]
 texture_filter = 1
 position = Vector2(513, 323)
+scale = Vector2(2, 2)
 texture = ExtResource("1_0mglf")
+offset = Vector2(32, 24)
 region_enabled = true
 region_rect = Rect2(80, 272, 64, 48)

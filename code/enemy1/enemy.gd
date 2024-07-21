@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 
 const RIGHT = Vector2.RIGHT
@@ -8,9 +8,12 @@ const RIGHT = Vector2.RIGHT
 @onready var rayCast = $RayCast
 @onready var label = $Label
 @onready var effectBlood = $Bloodstream
-@export var health = 20
+@export var health = 10
+var vector = Vector2(0,0)
 
 var target = null
+
+signal death
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,19 +23,29 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if target:
+		velocity = speed*vector
+		var collision = move_and_collide(velocity.limit_length(130)/50)
+		if collision:
 			
-		rayCast.global_rotation = global_position.direction_to(target.global_position).angle()
-		effectBlood.process_material.direction = Vector3(
-			global_position.direction_to(target.global_position).x,
-			global_position.direction_to(target.global_position).y,
-			0
-			)
-		var movement = RIGHT.rotated(rayCast.global_rotation) * speed * delta
-		global_position += movement
+			vector.x = velocity.bounce(collision.get_normal()).limit_length(1).x
+			vector.y = velocity.bounce(collision.get_normal()).limit_length(1).y
+			if collision.get_collider() is RigidBody2D:
+				collision.get_collider().apply_force(collision.get_normal() * -speed/5)
+		
+	
+func align():
+	vector = global_position.direction_to(target.global_position)
 
-func _on_area_2d_hurt_self(amount):
+
+
+func hurt(amount):
 	effectBlood.emitting = true
 	health -= amount
-	label.text = 'hp' + str(health)
-	
+	if health <= 0:
+		death.emit(self)
 
+
+
+func _on_hurtbox_body_entered(body):
+	if(body.is_in_group('player')):
+		body.hurt()

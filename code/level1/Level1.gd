@@ -5,9 +5,11 @@ extends Node2D
 @onready var rooms = $Rooms
 @onready var label = $Label
 @onready var camera = $Camera2D
+@onready var healthbar = $Camera2D/HealthBar
 @onready var player = $PlayerBody
 @onready var trail = $Line2D
 @onready var data = JSON.parse_string(json_string)
+@onready var timer = $Timer
 
 var map = [1,2,3,4]
 var levelState = {
@@ -21,11 +23,12 @@ var levelState = {
 func _ready():
 	generate_map()
 	initiateEnemies()
+	timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	update_line()
+#func _process(delta):
+	
 	
 func checkAdj(index, index2):
 	var roomOne = rooms.get_children()[index2].global_position
@@ -48,7 +51,7 @@ func _on_player_sigil_closed(index):
 func update_line():
 	trail.add_point(player.position)
 	trail.updatePolygons()
-	if(trail.get_point_count() > 200):
+	if(trail.get_point_count() > (trail.limit + Store.data.i1.value * Store.items.count('i1')) / (1+Store.data.i0.value * Store.items.count('i0'))):
 		trail.remove_point(0)
 		
 func initiateEnemies():
@@ -107,6 +110,7 @@ func generate_map():
 	assign_layouts()
 
 func assign_layouts():
+	var treasureRoom = (randi() % 9)
 	for roomIndex in 9:
 		if roomIndex != 0:
 			var index = (randi() % 3 + 1)
@@ -128,3 +132,15 @@ func _on_room_entered(room):
 
 func _on_room_room_entered(body):
 	camera.global_position = body.global_position
+
+
+func _on_timer_timeout():
+	update_line()
+
+
+func _on_player_body_hurt_update():
+	healthbar.hurt()
+
+
+func _on_player_body_hp_up():
+	healthbar.hpUp()
