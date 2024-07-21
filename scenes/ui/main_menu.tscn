@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://d01ngpavt6k7n"]
+[gd_scene load_steps=8 format=3 uid="uid://d01ngpavt6k7n"]
 
 [ext_resource type="Script" path="res://code/ui/main_menu.gd" id="1_1sj2i"]
 [ext_resource type="PackedScene" uid="uid://bcy28podb3hhh" path="res://scenes/ui/custom_button.tscn" id="1_6h83f"]
+[ext_resource type="Texture2D" uid="uid://nhethe27wbgc" path="res://res/graphics/proba tla.png" id="2_02ut8"]
 [ext_resource type="Shader" path="res://res/shaders/vignette.gdshader" id="2_modjt"]
+[ext_resource type="PackedScene" uid="uid://bgqgmcbpo3g76" path="res://scenes/ui/custom_button_common.tscn" id="3_ipji7"]
+[ext_resource type="FontFile" uid="uid://dekbp6tks6f6i" path="res://res/fonts/antiquity-print.ttf" id="5_r622p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxoms"]
 shader = ExtResource("2_modjt")
-shader_parameter/inner_radius = 0.1
-shader_parameter/outer_radius = 2.0
+shader_parameter/inner_radius = 0.05
+shader_parameter/outer_radius = 1.5
 shader_parameter/vignette_strength = 1.0
-shader_parameter/dither_strength = 0.1
+shader_parameter/dither_strength = 0.03
 shader_parameter/vignette_color = null
 
 [node name="MainMenu" type="Control"]
@@ -22,7 +25,13 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1sj2i")
 
-[node name="CustomButtonText" parent="." instance=ExtResource("1_6h83f")]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+texture = ExtResource("2_02ut8")
+
+[node name="StartGame" parent="." instance=ExtResource("1_6h83f")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,17 +39,79 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -101.0
-offset_top = -13.0
+offset_top = 43.0
 offset_right = -7.0
-offset_bottom = 13.0
+offset_bottom = 69.0
+
+[node name="Leaderboard" parent="." instance=ExtResource("3_ipji7")]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 351.0
+offset_right = 622.0
+offset_bottom = 376.0
+scale = Vector2(1.5, 1.5)
+text = "Leaderboard"
+
+[node name="Exit" parent="." instance=ExtResource("3_ipji7")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = 51.0
+offset_right = 218.0
+offset_bottom = 76.0
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Exit"
+timer_timeout = 6
+
+[node name="Title1" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 214.0
+offset_top = 160.0
+offset_right = 442.0
+offset_bottom = 204.0
+theme_override_colors/font_color = Color(0.658824, 0.0784314, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_r622p")
+theme_override_font_sizes/font_size = 30
+text = "Unstoppable"
+
+[node name="Title2" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 348.0
+offset_top = 213.0
+offset_right = 541.0
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(0.827451, 0.0941176, 0.109804, 1)
+theme_override_fonts/font = ExtResource("5_r622p")
+theme_override_font_sizes/font_size = 32
+text = "Bloodflow"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_oxoms")
 layout_mode = 0
-offset_left = 4.0
-offset_top = 5.0
-offset_right = 802.0
-offset_bottom = 601.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 800.0
+offset_bottom = 598.0
 mouse_filter = 2
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_r622p")
+text = "ver 1.0.0"
+
+[connection signal="pressed" from="Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
