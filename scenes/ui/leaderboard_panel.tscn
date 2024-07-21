@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm8mbyne5vcy2"]
+
+[sub_resource type="Theme" id="Theme_4ed73"]
+
+[node name="LeaderboardPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = -514.0
+offset_bottom = -538.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 285.0
+offset_bottom = 61.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = -20.0
+offset_right = 126.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4ed73")
+theme_override_constants/separation = 30
+
+[node name="Place" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "i#"
+
+[node name="Name" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Name: xxxx"
+
+[node name="Score" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Score: xxxx"
