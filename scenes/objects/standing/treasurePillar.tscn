@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbsmlgsnsdqla"]
+
+[ext_resource type="Texture2D" uid="uid://lepusls8540g" path="res://res/graphics/textures/RF_Catacombs_v1.0/mainlevbuild.png" id="1_8r47v"]
+
+[node name="TreasurePillar" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_8r47v")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(592, 128, 32, 64)

@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bonqwwebv0pnf"]
+[gd_scene load_steps=5 format=3 uid="uid://bonqwwebv0pnf"]
 
 [ext_resource type="Script" path="res://code/line/Line2D.gd" id="1_k22br"]
+[ext_resource type="Texture2D" uid="uid://bhtyv118hj2ut" path="res://res/graphics/anims/bloodtrail1.png" id="1_njxqu"]
 [ext_resource type="Script" path="res://code/line/lineCollisions.gd" id="2_wd7on"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_o5vet"]
+[sub_resource type="Gradient" id="Gradient_b8rau"]
+offsets = PackedFloat32Array(0, 0.195833, 0.675)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.559138, 1, 1, 1, 1)
 
 [node name="Line2D" type="Line2D"]
 texture_repeat = 2
 width = 32.0
-texture = SubResource("ImageTexture_o5vet")
-texture_mode = 1
+gradient = SubResource("Gradient_b8rau")
+texture = ExtResource("1_njxqu")
+texture_mode = 2
 script = ExtResource("1_k22br")
 
 [node name="lineCollisions" type="Area2D" parent="."]
