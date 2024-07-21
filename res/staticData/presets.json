@@ -6,7 +6,8 @@
 	"treasure": [
 		[3,4],
 		[8,4]
-	]
+	],
+	"exit": false
   },
   "l1": {
 	"enemies": {
@@ -54,7 +55,8 @@
 	  ],
 	},
 	"doors": [],
-	"treasure": {}
+	"treasure": {},
+	"exit": false
   },
   "l2": {
 	"enemies": {
@@ -82,7 +84,8 @@
 	  ],
 	},
 	"doors": [],
-	"treasure": {}
+	"treasure": {},
+	"exit": false
   },
   "l3": {
 	"enemies": {
@@ -105,7 +108,8 @@
 	},
 	"obstacles": {},
 	"doors": [],
-	"treasure": {}
+	"treasure": {},
+	"exit": false
   },
 "t": {
 	"enemies": {},
@@ -114,6 +118,14 @@
 	"treasure": [
 		[3,4],
 		[8,4]
-	]
+	],
+	"exit": false
+  },
+"e": {
+	"enemies": {},
+	"obstacles": {},
+	"doors": [],
+	"treasure": [],
+	"exit": true
   }
 }

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqsoly2i72siw"]
+
+[ext_resource type="Texture2D" uid="uid://lepusls8540g" path="res://res/graphics/textures/RF_Catacombs_v1.0/mainlevbuild.png" id="1_ew3mi"]
+
+[node name="Exit" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ew3mi")
+region_enabled = true
+region_rect = Rect2(720, 48, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
