@@ -15,9 +15,15 @@ run/main_scene="res://scenes/levels/Level1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LeaderboardConnection="*res://code/singletons/LeaderboardConnection.gd"
+
 [display]
 
-window/size/viewport_height=864
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/stretch/mode="viewport"
 
 [input]
 
