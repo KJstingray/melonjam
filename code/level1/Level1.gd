@@ -126,6 +126,5 @@ func _on_room_entered(room):
 	camera.global_position = room.global_position
 	
 
-
 func _on_room_room_entered(body):
 	camera.global_position = body.global_position

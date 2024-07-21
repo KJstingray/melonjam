@@ -37,7 +37,7 @@ func _on_area_2d_body_entered(body):
 				'w':
 					newEnemy = werewolf.instantiate()
 					
-					newEnemy.global_position.x =  (layout.enemies[enemy][0]*64) + 208
-					newEnemy.global_position.y =  (layout.enemies[enemy][1]*64) + 224
+					newEnemy.global_position.x = (layout.enemies[enemy][0]*64) + 208
+					newEnemy.global_position.y = (layout.enemies[enemy][1]*64) + 224
 					call_deferred("add_child", newEnemy)
 		room_entered.emit(self)
